@@ -1,7 +1,7 @@
 # ivSYTE Diagnostics — CFO Investor Dashboard
 
 > CFO investor dashboard for **ivSYTE Diagnostics**, a hypothetical multi-cancer early detection company using blood-based biomarker imaging AI. Built as part of the BIOT 5219 Team Business Pitch Project at Northeastern University.
-
+🔗 **Landing Page:** [mayankgandhi13.github.io/ivSYTE](https://mayankgandhi13.github.io/ivSYTE/landing.html)
 🔗 **Live Dashboard:** [mayankgandhi13.github.io/ivSYTE-Dashboard_CFO](https://mayankgandhi13.github.io/ivSYTE)
 
 ---
