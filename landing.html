@@ -7,109 +7,77 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --red: #C0182A; --red-light: #FCEBEB; --red-mid: #A32D2D;
-      --dark: #1a1a18; --text: #1a1a18; --text-muted: #5f5e5a;
-      --text-hint: #9a9890; --border: rgba(0,0,0,0.08);
-      --bg: #ffffff; --surface: #f7f7f5;
+      --red: #C0182A; --red-light: rgba(255,255,255,0.15); --red-mid: #ff9999;
+      --dark: #1a0508; --text: #ffffff; --text-muted: rgba(255,255,255,0.8);
+      --text-hint: rgba(255,255,255,0.55); --border: rgba(255,255,255,0.2);
+      --bg: rgba(0,0,0,0.4); --surface: rgba(0,0,0,0.25);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; }
-
-    /* NAV */
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 0.5px solid var(--border); padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(180deg, #1a0508 0%, #6b1520 25%, #d4606a 55%, #e8909a 70%, #8b1a24 100%) fixed; color: var(--text); font-size: 16px; line-height: 1.6; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(0,0,0,0.6); backdrop-filter: blur(12px); border-bottom: 0.5px solid rgba(255,255,255,0.15); padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo img { height: 32px; object-fit: contain; }
     .nav-logo-fb { width: 32px; height: 32px; border-radius: 50%; background: var(--red); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
-    .nav-name { font-size: 15px; font-weight: 600; color: var(--text); }
-    .nav-name span { color: var(--red); }
+    .nav-name { font-size: 15px; font-weight: 600; color: #fff; }
+    .nav-name span { color: #ff9999; }
     .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { text-decoration: none; font-size: 13px; color: var(--text-muted); font-weight: 500; transition: color .2s; }
-    .nav-links a:hover { color: var(--red); }
-    .nav-cta { font-size: 12px; font-weight: 600; padding: 6px 14px; background: var(--red); color: #fff; border-radius: 6px; text-decoration: none; }
+    .nav-links a { text-decoration: none; font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 500; }
+    .nav-links a:hover { color: #ff9999; }
     @media(max-width:600px) { .nav-links { display: none; } }
-
-    /* HERO */
     .hero { padding: 5rem 1.5rem 4rem; text-align: center; max-width: 800px; margin: 0 auto; }
-    .hero-badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 4px 12px; background: var(--red-light); color: var(--red-mid); border-radius: 20px; margin-bottom: 1.25rem; letter-spacing: .05em; text-transform: uppercase; }
-    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
-    .hero h1 span { color: var(--red); }
-    .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; }
+    .hero-badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 4px 12px; background: rgba(255,255,255,0.15); color: #ffbbbb; border-radius: 20px; margin-bottom: 1.25rem; letter-spacing: .05em; text-transform: uppercase; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; color: #fff; }
+    .hero h1 span { color: #ff9999; }
+    .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 2rem; }
     .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .btn-primary { padding: 12px 24px; background: var(--red); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; }
-    .btn-secondary { padding: 12px 24px; background: var(--surface); color: var(--text); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; border: 0.5px solid var(--border); }
-    .hero-stats { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 0.5px solid var(--border); }
+    .btn-secondary { padding: 12px 24px; background: rgba(255,255,255,0.15); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; border: 0.5px solid rgba(255,255,255,0.3); }
+    .hero-stats { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 0.5px solid rgba(255,255,255,0.2); }
     .stat-item { text-align: center; }
-    .stat-val { font-size: 1.75rem; font-weight: 700; color: var(--red); }
-    .stat-lbl { font-size: 12px; color: var(--text-hint); margin-top: 2px; }
-
-    /* SECTIONS */
+    .stat-val { font-size: 1.75rem; font-weight: 700; color: #ff9999; }
+    .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
     section { padding: 4rem 1.5rem; }
-    section:nth-child(even) { background: var(--surface); }
+    section:nth-child(even) { background: rgba(0,0,0,0.15); }
+    section:nth-child(odd) { background: rgba(0,0,0,0.05); }
     .section-inner { max-width: 1000px; margin: 0 auto; }
-    .section-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; color: var(--red); margin-bottom: .5rem; }
-    .section-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 1rem; }
-    .section-sub { font-size: 15px; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
-
-    /* MISSION */
+    .section-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; color: #ff9999; margin-bottom: .5rem; }
+    .section-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 1rem; color: #fff; }
+    .section-sub { font-size: 15px; color: rgba(255,255,255,0.75); max-width: 600px; margin-bottom: 2rem; }
     .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-    .mission-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.25rem; }
-    .mission-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--red-light); display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; }
-    .mission-icon svg { width: 18px; height: 18px; stroke: var(--red); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .mission-card h3 { font-size: 15px; font-weight: 600; margin-bottom: .4rem; }
-    .mission-card p { font-size: 13px; color: var(--text-muted); }
-
-    /* TECHNOLOGY */
+    .mission-card { background: rgba(0,0,0,0.45); border: 0.5px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 1.25rem; }
+    .mission-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(192,24,42,0.3); display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; }
+    .mission-icon svg { width: 18px; height: 18px; stroke: #ff9999; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .mission-card h3 { font-size: 15px; font-weight: 600; margin-bottom: .4rem; color: #fff; }
+    .mission-card p { font-size: 13px; color: rgba(255,255,255,0.7); }
     .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-    .tech-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.25rem; border-top: 3px solid var(--red); }
-    .tech-card h3 { font-size: 14px; font-weight: 600; margin-bottom: .5rem; color: var(--red); }
-    .tech-card p { font-size: 13px; color: var(--text-muted); }
-    .tech-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; background: var(--red-light); color: var(--red-mid); border-radius: 4px; margin-bottom: .5rem; }
-
-    /* TEAM */
-    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.25rem; }
+    .tech-card { background: rgba(0,0,0,0.45); border: 0.5px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 1.25rem; border-top: 3px solid var(--red); }
+    .tech-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; background: rgba(192,24,42,0.4); color: #ffbbbb; border-radius: 4px; margin-bottom: .5rem; }
+    .tech-card h3 { font-size: 14px; font-weight: 600; margin-bottom: .5rem; color: #ffaaaa; }
+    .tech-card p { font-size: 13px; color: rgba(255,255,255,0.7); }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
     .team-card { text-align: center; }
-    .team-photo { width: 100%; aspect-ratio: 1; border-radius: 12px; object-fit: cover; background: var(--surface); margin-bottom: .75rem; display: block; }
-    .team-photo-fb { width: 100%; aspect-ratio: 1; border-radius: 12px; background: linear-gradient(135deg, #e8e6e0, #d3d1c7); display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; font-size: 2rem; font-weight: 700; color: var(--text-hint); }
-    .team-name { font-size: 14px; font-weight: 600; }
-    .team-role { font-size: 12px; color: var(--red); font-weight: 500; margin-top: 2px; }
-    .team-bio { font-size: 12px; color: var(--text-hint); margin-top: 4px; }
-
-    /* FUNDING */
-    .funding-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
-    .funding-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.25rem; }
-    .funding-val { font-size: 1.5rem; font-weight: 700; color: var(--red); }
-    .funding-lbl { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-    .funding-sub { font-size: 11px; color: var(--text-hint); margin-top: 2px; }
-    .funding-timeline { display: flex; flex-direction: column; gap: .75rem; }
-    .ft-row { display: flex; align-items: center; gap: 1rem; font-size: 13px; }
-    .ft-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .ft-dot.done { background: var(--red); }
-    .ft-dot.pend { background: var(--border); border: 1.5px solid var(--text-hint); }
-    .ft-label { color: var(--text-muted); }
-    .ft-year { margin-left: auto; font-weight: 600; color: var(--text-hint); font-size: 11px; }
-
-    /* ROADMAP */
+    .team-photo { width: 100%; aspect-ratio: 1; border-radius: 12px; object-fit: cover; margin-bottom: .75rem; display: block; }
+    .team-name { font-size: 14px; font-weight: 600; color: #fff; }
+    .team-role { font-size: 12px; color: #ff9999; font-weight: 500; margin-top: 2px; }
+    .team-bio { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; }
     .roadmap { display: flex; flex-direction: column; gap: 1rem; }
     .rm-row { display: flex; gap: 1rem; align-items: flex-start; }
-    .rm-year { min-width: 60px; font-size: 13px; font-weight: 700; color: var(--red); padding-top: 2px; }
+    .rm-year { min-width: 60px; font-size: 13px; font-weight: 700; color: #ffaaaa; padding-top: 2px; }
     .rm-line { display: flex; flex-direction: column; align-items: center; padding-top: 6px; }
-    .rm-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
-    .rm-tail { width: 2px; flex: 1; background: var(--red-light); margin-top: 4px; min-height: 30px; }
-    .rm-content { background: var(--bg); border: 0.5px solid var(--border); border-radius: 10px; padding: .75rem 1rem; flex: 1; }
-    .rm-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
-    .rm-content p { font-size: 13px; color: var(--text-muted); }
+    .rm-dot { width: 10px; height: 10px; border-radius: 50%; background: #C0182A; flex-shrink: 0; }
+    .rm-tail { width: 2px; flex: 1; background: rgba(255,255,255,0.2); margin-top: 4px; min-height: 30px; }
+    .rm-content { background: rgba(0,0,0,0.45); border: 0.5px solid rgba(255,255,255,0.2); border-radius: 10px; padding: .75rem 1rem; flex: 1; }
+    .rm-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; color: #fff; }
+    .rm-content p { font-size: 13px; color: rgba(255,255,255,0.7); }
     .rm-tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; margin-bottom: 4px; }
-    .rm-done { background: var(--red-light); color: var(--red-mid); }
-    .rm-pend { background: var(--surface); color: var(--text-hint); }
-
-    /* FOOTER */
-    footer { background: var(--dark); color: rgba(255,255,255,0.6); text-align: center; padding: 2rem 1.5rem; font-size: 12px; }
+    .rm-done { background: rgba(192,24,42,0.4); color: #ffbbbb; }
+    .rm-pend { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+    footer { background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.6); text-align: center; padding: 2rem 1.5rem; font-size: 12px; width: 100%; }
     footer strong { color: #fff; }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
     <img src="logo.png" alt="ivSYTE" onerror="this.style.display='none';document.getElementById('nav-fb').style.display='flex';">
@@ -120,14 +88,13 @@
     <li><a href="#mission">Mission</a></li>
     <li><a href="#technology">Technology</a></li>
     <li><a href="#team">Team</a></li>
-    <li><a href="#funding">Funding</a></li>
+    <li><a href="#investors">Investors</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">Series A &mdash; $120M</div>
+  <div class="hero-badge">Series B &mdash; $125M Ask</div>
   <h1>Detecting cancer <span>earlier</span> saves lives</h1>
   <p>ivSYTE Diagnostics is building the world's broadest-spectrum blood-based multi-cancer early detection platform — powered by VitaSpectra AI and 200+ biomarker signatures.</p>
   <div class="hero-btns">
@@ -143,7 +110,6 @@
   </div>
 </div>
 
-<!-- MISSION -->
 <section id="mission">
   <div class="section-inner">
     <div class="section-tag">Mission</div>
@@ -151,30 +117,22 @@
     <p class="section-sub">Over 75% of cancers are detected at late stages when survival rates drop below 25%. Early detection is the single most impactful intervention in oncology.</p>
     <div class="mission-grid">
       <div class="mission-card">
-        <div class="mission-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        </div>
+        <div class="mission-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
         <h3>Late-stage detection crisis</h3>
         <p>52% of lung cancers are detected at distant stage with only 9.7% 5-year survival. Current screening tools miss early signals entirely.</p>
       </div>
       <div class="mission-card">
-        <div class="mission-icon">
-          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
+        <div class="mission-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         <h3>Our solution</h3>
         <p>A single blood draw analyzes 200+ biomarker signatures across RBC, immune, protein, cfDNA, and metabolomics panels — detecting cancer 3.2 years earlier.</p>
       </div>
       <div class="mission-card">
-        <div class="mission-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        </div>
+        <div class="mission-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <h3>Accessible &amp; affordable</h3>
         <p>At $490 — nearly half the price of competitors — ivSYTE makes multi-cancer screening accessible to hospitals, clinics, and high-risk individuals alike.</p>
       </div>
       <div class="mission-card">
-        <div class="mission-icon">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
+        <div class="mission-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <h3>AI-powered longitudinal</h3>
         <p>LSTM + Gradient Boosting models track 180+ markers over time, creating a personalised baseline and risk score delivered through a physician dashboard.</p>
       </div>
@@ -182,48 +140,22 @@
   </div>
 </section>
 
-<!-- TECHNOLOGY -->
 <section id="technology">
   <div class="section-inner">
     <div class="section-tag">Technology</div>
     <h2 class="section-title">VitaSpectra AI platform</h2>
     <p class="section-sub">A six-step AI workflow from blood draw to physician dashboard, integrating the broadest spectrum of biomarker classes in any MCED test.</p>
     <div class="tech-grid">
-      <div class="tech-card">
-        <div class="tech-badge">Panel 1</div>
-        <h3>RBC Markers</h3>
-        <p>RDW · MCV · Hgb · CAIX · Eryptosis · Band3 — 40+ cancer types, 14–36 month lead time.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-badge">Panel 2</div>
-        <h3>WBC / Immune</h3>
-        <p>NLR · PLR · SII · NK cells · Tregs · MDSCs · CD4/CD8 — 60+ cancer types, 12–38 months.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-badge">Panel 3</div>
-        <h3>Plasma Proteins + cfDNA</h3>
-        <p>CEA · CA-125 · VEGF · AFP · PSMA · KRAS · TP53 · ctDNA — 200+ types, 6–36 months.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-badge">Panel 4</div>
-        <h3>Metabolomics</h3>
-        <p>2-HG · Sarcosine · Kynurenine · Lactate · TEP mRNA · cfRNA-TERT — 50+ types, 10–36 months.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-badge">AI Engine</div>
-        <h3>Multi-Marker AI Score</h3>
-        <p>NLR + cfDNA + Metabolomics ensemble — 200+ cancer types with 24–42 month lead time.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-badge">Output</div>
-        <h3>Physician Dashboard</h3>
-        <p>Personalised longitudinal risk scores, flagging high-risk alerts with 97.2% confirmation rate.</p>
-      </div>
+      <div class="tech-card"><div class="tech-badge">Panel 1</div><h3>RBC Markers</h3><p>RDW · MCV · Hgb · CAIX · Eryptosis · Band3 — 40+ cancer types, 14–36 month lead time.</p></div>
+      <div class="tech-card"><div class="tech-badge">Panel 2</div><h3>WBC / Immune</h3><p>NLR · PLR · SII · NK cells · Tregs · MDSCs · CD4/CD8 — 60+ cancer types, 12–38 months.</p></div>
+      <div class="tech-card"><div class="tech-badge">Panel 3</div><h3>Plasma Proteins + cfDNA</h3><p>CEA · CA-125 · VEGF · AFP · PSMA · KRAS · TP53 · ctDNA — 200+ types, 6–36 months.</p></div>
+      <div class="tech-card"><div class="tech-badge">Panel 4</div><h3>Metabolomics</h3><p>2-HG · Sarcosine · Kynurenine · Lactate · TEP mRNA · cfRNA-TERT — 50+ types, 10–36 months.</p></div>
+      <div class="tech-card"><div class="tech-badge">AI Engine</div><h3>Multi-Marker AI Score</h3><p>NLR + cfDNA + Metabolomics ensemble — 200+ cancer types with 24–42 month lead time.</p></div>
+      <div class="tech-card"><div class="tech-badge">Output</div><h3>Physician Dashboard</h3><p>Personalised longitudinal risk scores, flagging high-risk alerts with 97.2% confirmation rate.</p></div>
     </div>
   </div>
 </section>
 
-<!-- TEAM -->
 <section id="team">
   <div class="section-inner">
     <div class="section-tag">Leadership</div>
@@ -254,55 +186,18 @@
         <div class="team-role">Chief Financial Officer</div>
         <div class="team-bio">MBA Finance, Wharton. Former investment banker at Goldman Sachs covering life sciences.</div>
       </div>
-      <div class="team-card">
-        <img class="team-photo" src="headshots/Sofia.jpg" alt="Sofia Reyes" onerror="this.style.display='none'">
-        <div class="team-name">Sofia Reyes, JD</div>
-        <div class="team-role">Chief Legal Officer</div>
-        <div class="team-bio">Healthcare regulatory attorney. Former FDA advisory counsel with 12 years in device approvals.</div>
-      </div>
-      <div class="team-card">
-        <img class="team-photo" src="headshots/Kim.jpg" alt="James Kim" onerror="this.style.display='none'">
-        <div class="team-name">James Kim, MBA</div>
-        <div class="team-role">Chief Marketing Officer</div>
-        <div class="team-bio">Former VP Marketing at Illumina. Built go-to-market strategy for 3 FDA-cleared diagnostics.</div>
-      </div>
-      <div class="team-card">
-        <img class="team-photo" src="headshots/Neha.jpg" alt="Neha Prakash" onerror="this.style.display='none'">
-        <div class="team-name">Neha Prakash, MBA</div>
-        <div class="team-role">Chief Revenue Officer</div>
-        <div class="team-bio">Former SVP at Quest Diagnostics. Scaled hospital network partnerships to $500M+ in revenue.</div>
-      </div>
-      <div class="team-card">
-        <img class="team-photo" src="headshots/Thomas.jpg" alt="Thomas Adeyemi" onerror="this.style.display='none'">
-        <div class="team-name">Thomas Adeyemi, PhD</div>
-        <div class="team-role">Chief Human Resources Officer</div>
-        <div class="team-bio">Organizational psychologist. Built talent pipelines at Genentech and Moderna during hypergrowth.</div>
-      </div>
-      <div class="team-card">
-        <img class="team-photo" src="headshots/Elena.jpg" alt="Elena Chen" onerror="this.style.display='none'">
-        <div class="team-name">Elena Chen, MD</div>
-        <div class="team-role">Chief Medical Officer</div>
-        <div class="team-bio">Oncologist &amp; clinical trialist. Former Director of Clinical Affairs at Foundation Medicine.</div>
-      </div>
-      <div class="team-card">
-        <img class="team-photo" src="headshots/Rafael.jpg" alt="Rafael Branco" onerror="this.style.display='none'">
-        <div class="team-name">Rafael Branco, MBA</div>
-        <div class="team-role">Chief Commercial Officer</div>
-        <div class="team-bio">Former CCO at Guardant Health. Led first commercial launch of liquid biopsy at national scale.</div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- INVESTORS -->
-<section id="funding">
+<section id="investors">
   <div class="section-inner" style="text-align:center;">
     <div class="section-tag">Investors</div>
     <h2 class="section-title">Interested in ivSYTE?</h2>
-    <p class="section-sub" style="margin:0 auto 2rem;">We are currently raising a <strong>$120M Series A</strong> with a $40M anchor ask. Our full CFO investor dashboard covers market opportunity, revenue forecast, competitive landscape, use of proceeds, and financial projections.</p>
+    <p class="section-sub" style="margin:0 auto 2rem;">We are currently raising a <strong>$125M Series B</strong> with a $40M anchor ask. Our full CFO investor dashboard covers market opportunity, revenue forecast, competitive landscape, use of proceeds, and financial projections.</p>
     <a class="btn-primary" href="index.html" style="display:inline-block;font-size:15px;padding:14px 32px;">View CFO Investor Dashboard &rarr;</a>
     <div style="margin-top:2.5rem;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;">
-      <div class="stat-item"><div class="stat-val">$120M</div><div class="stat-lbl">Series A ask</div></div>
+      <div class="stat-item"><div class="stat-val">$125M</div><div class="stat-lbl">Series B ask</div></div>
       <div class="stat-item"><div class="stat-val">~34%</div><div class="stat-lbl">Projected IRR</div></div>
       <div class="stat-item"><div class="stat-val">2029</div><div class="stat-lbl">Break-even year</div></div>
       <div class="stat-item"><div class="stat-val">$250M</div><div class="stat-lbl">Revenue by 2033</div></div>
@@ -310,7 +205,6 @@
   </div>
 </section>
 
-<!-- ROADMAP -->
 <section id="roadmap">
   <div class="section-inner">
     <div class="section-tag">Future prospects</div>
@@ -330,7 +224,17 @@
       <div class="rm-row">
         <div class="rm-year">2022</div>
         <div class="rm-line"><div class="rm-dot"></div><div class="rm-tail"></div></div>
+        <div class="rm-content"><span class="rm-tag rm-done">Done</span><h4>Series A — $25M</h4><p>First institutional funding round secured to accelerate biomarker engine development and expand the clinical team.</p></div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-year">2023</div>
+        <div class="rm-line"><div class="rm-dot"></div><div class="rm-tail"></div></div>
         <div class="rm-content"><span class="rm-tag rm-done">Done</span><h4>IDE obtained</h4><p>Investigational Device Exemption granted by FDA for clinical trial initiation.</p></div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-year">2024</div>
+        <div class="rm-line"><div class="rm-dot"></div><div class="rm-tail"></div></div>
+        <div class="rm-content"><span class="rm-tag rm-done">Done</span><h4>Series A2 — $50M</h4><p>Series A2 extension secured to fund expanded clinical trials, MGB partnership negotiations, and compute infrastructure.</p></div>
       </div>
       <div class="rm-row">
         <div class="rm-year">2025</div>
@@ -341,11 +245,6 @@
         <div class="rm-year">2026</div>
         <div class="rm-line"><div class="rm-dot"></div><div class="rm-tail"></div></div>
         <div class="rm-content"><span class="rm-tag rm-done">Done</span><h4>VC loan — $100M</h4><p>Venture debt secured to fund launch preparation: computational scale-up and headcount growth.</p></div>
-      </div>
-      <div class="rm-row">
-        <div class="rm-year">2027</div>
-        <div class="rm-line"><div class="rm-dot"></div><div class="rm-tail"></div></div>
-        <div class="rm-content"><span class="rm-tag rm-pend">Upcoming</span><h4>FDA 510(k) approval</h4><p>Regulatory clearance for commercial sale expected Q2 2027 following expanded trial data submission.</p></div>
       </div>
       <div class="rm-row">
         <div class="rm-year">2028</div>
@@ -361,10 +260,8 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <strong>ivSYTE Diagnostics</strong> &mdash; Blood-based multi-cancer early detection &middot; Biomarker imaging AI<br>
-  <span style="margin-top:6px;display:block;">BIOT 5219 Team Business Pitch &middot; Northeastern University &middot; 2025</span>
+  <strong>ivSYTE Diagnostics</strong> &mdash; Blood-based multi-cancer early detection &middot; Biomarker imaging AI
 </footer>
 
 </body>
